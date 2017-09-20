@@ -1,9 +1,11 @@
-Welcome to SourceLair!
+# rebuild steps
 
-Please read the following instructions in order start working frictionlessly in SourceLair:
+aws s3 rb s3://corkit --force
+aws s3api create-bucket --bucket corkit --region sa-east-1 --create-bucket-configuration LocationConstraint=sa-east-1
+aws s3api put-bucket-website --bucket corkit --website-configuration file://website.json
+aws s3api put-bucket-policy --bucket corkit --policy file://policy.json
+git clone https://github.com/gsilos/corkitweb.git
+aws s3 cp --exclude ".git/*" --recursive /Users/Fabiano/x/corkitweb s3://corkit/
 
-1. Customize your settings using .editorconfig
-2. Install your packages using bower.json from your file explorer
-3. Open your index.html and start coding
-
-Don't forget to contact us at support@sourcelair.com for any questions.
+#http://corkit.s3-website-sa-east-1.amazonaws.com/
+~                                                    
